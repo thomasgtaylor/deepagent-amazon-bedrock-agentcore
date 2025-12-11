@@ -1,0 +1,26 @@
+services:
+  agent:
+    build:
+      context: .
+      platforms:
+        - linux/arm64
+    image: deepagent
+    ports:
+      - "8080:8080"
+    volumes:
+      - ~/.aws:/root/.aws:ro
+    environment:
+      - PORT=8080
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN:-}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - MEMORY_ID=${MEMORY_ID}
+      - MODEL=${MODEL}
+    develop:
+      watch:
+        - action: sync
+          path: ./agent
+          target: /app/agent
+        - action: rebuild
+          path: ./pyproject.toml
