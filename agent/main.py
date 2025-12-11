@@ -1,10 +1,10 @@
-from logging import basicConfig, getLogger, INFO
+from logging import INFO, basicConfig, getLogger
+from uuid import uuid4
 
 from bedrock_agentcore import BedrockAgentCoreApp
 from deepagents import create_deep_agent
-from langgraph_checkpoint_aws import AgentCoreMemorySaver
 from langgraph.config import RunnableConfig
-from uuid import uuid4
+from langgraph_checkpoint_aws import AgentCoreMemorySaver
 
 from .settings import Settings
 
@@ -16,8 +16,7 @@ app = BedrockAgentCoreApp()
 agent = create_deep_agent(
     model=settings.model,
     checkpointer=AgentCoreMemorySaver(
-        memory_id=settings.memory_id,
-        region_name=settings.aws_region
+        memory_id=settings.memory_id, region_name=settings.aws_region
     ),
 )
 

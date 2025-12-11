@@ -1,9 +1,9 @@
-from aws_cdk import CfnOutput
-from aws_cdk.aws_bedrock_agentcore_alpha import Memory
-from aws_cdk import Stack, aws_iam as iam
-from aws_cdk.aws_bedrock_agentcore_alpha import AgentRuntimeArtifact, Runtime
-from constructs import Construct
 from pathlib import Path
+
+from aws_cdk import CfnOutput, Stack
+from aws_cdk import aws_iam as iam
+from aws_cdk.aws_bedrock_agentcore_alpha import AgentRuntimeArtifact, Memory, Runtime
+from constructs import Construct
 
 
 class ServerlessDeepAgentStack(Stack):
